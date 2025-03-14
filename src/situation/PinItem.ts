@@ -5,6 +5,7 @@ import { TokenType } from "../core/tokenTypes";
 import type { LexType, TokenFigure } from "../core/tokenTypes";
 import * as utils from "../core/utils";
 import savelex from "../core/savelex";
+import { AuthorType } from "../core/types";
 
 export default async (dom: HTMLElement): Promise<{
     lex: LexType[],
@@ -12,6 +13,8 @@ export default async (dom: HTMLElement): Promise<{
     zip: JSZip,
     title: string,
     itemId: string,
+    url: string,
+    author: AuthorType
 }> => {
     const lex = lexer(dom);
 
@@ -65,5 +68,7 @@ export default async (dom: HTMLElement): Promise<{
         zip,
         title: "想法",
         itemId: zop.itemId,
+        url: url,
+        author: author
     }
 };

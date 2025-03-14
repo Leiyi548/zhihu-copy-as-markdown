@@ -4,6 +4,8 @@ import { MakeButton, getParent } from "./core/utils";
 import NormalItem from "./situation/NormalItem";
 import * as JSZip from "jszip";
 import PinItem from "./situation/PinItem";
+import { AuthorType } from "./core/types";
+
 
 type ResultType = {
 	markdown: string[],
@@ -12,7 +14,10 @@ type ResultType = {
 	dom: HTMLElement,
 	itemId?: string,
 	question?: boolean,
+	url: string,
+	author: AuthorType,
 };
+
 
 const allResults: ResultType[] = [];
 
@@ -105,6 +110,8 @@ const main = async () => {
 					title: res.title,
 					dom: RichText,
 					itemId: res.itemId,
+					url: res.url,
+					author: res.author
 				};
 			} else {
 				// 回答
@@ -117,6 +124,8 @@ const main = async () => {
 					title: res.title,
 					dom: RichText,
 					itemId: res.itemId,
+					url: res.url,
+					author: res.author
 				};
 
 				if (getParent(RichText, "QuestionRichText")) {
@@ -159,14 +168,14 @@ const main = async () => {
 
 			// 复制为Markdown
 			const ButtonCopyMarkdown = MakeButton();
-			ButtonCopyMarkdown.innerHTML = "复制为Markdown";
+			ButtonCopyMarkdown.innerHTML = "复制为Mgrkdown";
 			ButtonCopyMarkdown.style.borderRadius = "1em 0 0 1em";
 			ButtonCopyMarkdown.style.paddingLeft = ".4em";
 			ButtonContainer.prepend(ButtonCopyMarkdown);
 
 			ButtonCopyMarkdown.addEventListener("click", () => {
 				try {
-					navigator.clipboard.writeText(result.markdown.join("\n\n"));
+					navigator.clipboard.writeText(result.markdown.join("\n\n")+"\n"+"\n---\n\n"+"链接::["+result.title+"]"+"("+result.url+")\n"+"作者::["+result.author.name+"]"+"("+result.author.url+")");
 					ButtonCopyMarkdown.innerHTML = "复制成功✅";
 					setTimeout(() => {
 						ButtonCopyMarkdown.innerHTML = "复制为Markdown";

@@ -4,6 +4,7 @@ import { LexType } from "../core/tokenTypes";
 import { parser } from "../core/parser";
 import * as utils from "../core/utils";
 import savelex from "../core/savelex";
+import { AuthorType } from "../core/types";
 
 
 // 生成8位UUID
@@ -21,6 +22,8 @@ export default async (dom: HTMLElement): Promise<{
     markdown: string[],
     zip: JSZip,
     title: string,
+    url: string,
+    author: AuthorType,
     itemId: string,
 }> => {
     const lex = lexer(dom.childNodes as NodeListOf<Element>);
@@ -70,5 +73,5 @@ export default async (dom: HTMLElement): Promise<{
 
     const itemId = (zop || {}).itemId || getUUID();
 
-    return { lex, markdown, zip, title: title, itemId };
+    return { lex, markdown, zip, title: title, url:url,author:author,itemId };
 };
