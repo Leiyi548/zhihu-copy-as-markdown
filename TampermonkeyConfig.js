@@ -11,10 +11,10 @@ export const UserScriptContent = fs
 export const UserScript = {
 	"name"       : "知乎下载器",
 	"namespace"  : "http://howardzhangdqs.eu.org/",
-	"source"     : "https://github.com/Howardzhangdqs/zhihu-copy-as-markdown",
+	"source"     : "https://github.com/Leiyi548/zhihu-copy-as-markdown",
 	"version"    : packageInfo.version + "-" + md5(UserScriptContent).slice(0, 6),
 	"description": "一键复制知乎文章/回答为Markdown，下载文章/回答为zip（包含素材图片与文章/回答信息），备份你珍贵的回答与文章。",
-	"author"     : packageInfo.author,
+	"author"     : "Leiyi548",
 	"match"      : [
 	    "*:\/\/www.zhihu.com\/*",
 	    "*:\/\/zhuanlan.zhihu.com\/*"

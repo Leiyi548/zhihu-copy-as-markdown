@@ -1,4 +1,3 @@
-
 import { saveAs } from "file-saver";
 import { MakeButton, getParent } from "./core/utils";
 import NormalItem from "./situation/NormalItem";
@@ -175,7 +174,7 @@ const main = async () => {
 
 			ButtonCopyMarkdown.addEventListener("click", () => {
 				try {
-					navigator.clipboard.writeText(result.markdown.join("\n\n")+"\n"+"\n---\n\n"+"链接::["+result.title+"]"+"("+result.url+")\n"+"作者::["+result.author.name+"]"+"("+result.author.url+")");
+					navigator.clipboard.writeText(result.markdown.join("\n\n")+"\n\n> [!metadata]\n"+"> 链接::["+result.title+"]"+"("+result.url+")\n"+"> 作者::["+result.author.name+"]"+"("+result.author.url+")");
 					ButtonCopyMarkdown.innerHTML = "复制成功✅";
 					setTimeout(() => {
 						ButtonCopyMarkdown.innerHTML = "复制为Markdown";
